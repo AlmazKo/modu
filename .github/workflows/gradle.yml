@@ -16,4 +16,6 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build with Gradle
-      run: ls  "$JAVA_HOME"
+      run: gradlew build
+    - name: Create image
+      run: $JAVA_HOME/bin/jlink --launcher start=modu/modu.Main --module-path build/classes/java/main --add-modules modu --output customjre --strip-debug --vm=minimal 
